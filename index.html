@@ -45,27 +45,108 @@
     </section>
     
     <section id="start" class="slide">
-        <h2 class="big">Title</h2>
+        <h2 class="big">GraphQL queries and schemas<br />have no global <em>semantics</em> or <em>identifiers</em></h2>
+        <p>Querying over multiple GraphQL interfaces is hard with the current solutions:</p>
         <ul>
             <li>
-                TODO
+                <h3><a href="https://blog.apollographql.com/graphql-schema-delegation-9d832648c543">Schema delegation</a></h3>
+                <p class="indent">Stitch multiple schemas together, forward subqueries to other interfaces</p>
+            </li>
+            <li>
+                <h3><a href="https://medium.com/@aaivazis/a-guide-to-graphql-schema-federation-part-1-995b639ac035">Schema federation</a></h3>
+                <p class="indent">Like delegation, with improved spreading of types over different interfaces</p>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="start-solution-rdf" class="slide">
+        <h2 class="big">RDF offers solutions for this problem</h2>
+        <p>Support for federation is built into its foundations.</p>
+        <ul>
+            <li>
+                <h3>IRIs are unique identifiers of resources</h3>
+                <p class="indent">Instead of interface-specific <code>ID</code>s.</p>
+            </li>
+            <li>
+                <h3>Vocabularies have global semantics</h3>
+                <p class="indent">Instead of interface-specific schemas.</p>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="start-approaches" class="slide">
+        <h2>Bridges between GraphQL and RDF exist</h2>
+        <ul>
+            <li>
+                <h3>HyperGraphQL</h3>
+                <p class="indent">GraphQL interface wrapper around RDF sources</p>
+            </li>
+            <li>
+                <h3>TopBraid</h3>
+                <p class="indent">Graph store with GraphQL interface via (SHACL) shape definitions</p>
+            </li>
+            <li>
+                <h3>Stardog</h3>
+                <p class="indent">SPARQL engine, with conversion of GraphQL to SPARQL</p>
+            </li>
+            <li>
+                <h3>GraphQL-LD</h3>
+                <p class="indent">Engine-independent GraphQL to SPARQL converter with JSON-LD contexts</p>
             </li>
         </ul>
     </section>
     
     <section id="index" class="slide index">
       <ul>
-        <li><a href="#index-a">A</a></li>
-        <li><a href="#index-b">B</a></li>
-        <li><a href="#index-c">C</a></li>
+        <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li><a href="#index-topbraid">TopBraid</a></li>
+        <li><a href="#index-stardog">Stardog</a></li>
+        <li><a href="#index-graphqlld">GraphQL-LD</a></li>
       </ul>
     </section>
     
-    <section id="index-a" class="slide index">
+    <section id="index-hypergraphql" class="slide index">
       <ul>
-        <li class="current"><a href="#index-a">A</a></li>
-        <li><a href="#index-b">B</a></li>
-        <li><a href="#index-c">C</a></li>
+        <li class="current"><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li><a href="#index-topbraid">TopBraid</a></li>
+        <li><a href="#index-stardog">Stardog</a></li>
+        <li><a href="#index-graphqlld">GraphQL-LD</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-topbraid" class="slide index">
+      <ul>
+        <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li class="current"><a href="#index-topbraid">TopBraid</a></li>
+        <li><a href="#index-stardog">Stardog</a></li>
+        <li><a href="#index-graphqlld">GraphQL-LD</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-stardog" class="slide index">
+      <ul>
+        <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li><a href="#index-topbraid">TopBraid</a></li>
+        <li class="current"><a href="#index-stardog">Stardog</a></li>
+        <li><a href="#index-graphqlld">GraphQL-LD</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-graphqlld" class="slide index">
+      <ul>
+        <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li><a href="#index-topbraid">TopBraid</a></li>
+        <li><a href="#index-stardog">Stardog</a></li>
+        <li class="current"><a href="#index-graphqlld">GraphQL-LD</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-final" class="slide index">
+      <ul>
+        <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
+        <li><a href="#index-topbraid">TopBraid</a></li>
+        <li><a href="#index-stardog">Stardog</a></li>
+        <li><a href="#index-graphqlld">GraphQL-LD</a></li>
       </ul>
     </section>
 
