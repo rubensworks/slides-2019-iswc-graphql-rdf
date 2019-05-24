@@ -275,6 +275,60 @@ type Human {
       </ul>
     </section>
     
+    <section id="stardog" class="slide">
+        <h2><a href="https://www.stardog.com/">Stardog</a> databases allow querying<br />using GraphQL queries</h2>
+        <img src="img/stardog.png" alt="Stardog Logo" style="float: left; width: 345px; margin: 10px" />
+        <ul>
+            <li>Commercial product (<em>slides based on public documentation</em>)</li>
+            <li>Developed by <a href="https://www.stardog.com/">Stardog Union</a></li>
+            <li>Converts GraphQL queries to SPARQL</li>
+            <li>Optional GraphQL schema (<code>@schema</code> query var)</li>
+            <li>Supports most SPARQL features (directives: filter, optional, bind, ...)</li>
+        </ul>
+    </section>
+    
+    <section id="stardog-querying-example-default" class="slide">
+        <h2>Conversion with default namespaces</h2>
+        <div style="width: 40%; float: left">
+            <p>GraphQL:</p>
+            <pre>{
+  Human {
+    name
+    height
+  }
+}</pre>
+        </div>
+        <div style="width: 50%; float: right">
+            <p>SPARQL:</p>
+            <pre>SELECT ?name ?height WHERE {
+  _:b1 a :Human;
+       :name ?name;
+       :height ?height.
+}</pre>
+        </div>
+    </section>
+    
+    <section id="stardog-querying-prefixalias" class="slide">
+        <h2>Custom prefixes or aliases can be defined</h2>
+        <div>
+            <p>Prefixes:</p>
+            <pre>query withPrefixes @prefix(foaf: "http://xmlns.com/foaf/0.1/") {
+  Human {
+    foaf:name
+  }
+}</pre>
+        </div>
+        <div>
+            <p>Aliases:</p>
+            <pre>query withAliases @config(alias: {myType: "http://ex.com/my-type",
+                                  myProp: "http://ex.com/my-prop"}) {
+  myType {
+    myProp
+  }
+}</pre>
+        </div>
+    </section>
+    
     <section id="index-graphqlld" class="slide index">
       <ul>
         <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
@@ -298,6 +352,7 @@ type Human {
         <ul style="font-size: 0.7em">
             <li>HyperGraphQL documentation: <a href="https://www.hypergraphql.org/documentation/">https://www.hypergraphql.org/documentation/</a></li>
             <li>TopQuadrant GraphQL: <a href="https://www.topquadrant.com/technology/graphql/">https://www.topquadrant.com/technology/graphql/</a></li>
+            <li>Stardog Documentation: <a href="https://www.stardog.com/docs/#_graphql_queries">https://www.stardog.com/docs/#_graphql_queries</a></li>
         </ul>
     </section>
 
