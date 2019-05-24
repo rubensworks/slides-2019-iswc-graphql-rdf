@@ -114,6 +114,79 @@
       </ul>
     </section>
     
+    <section id="hypergraphql" class="slide">
+        <h2><a href="https://www.hypergraphql.org/">HyperGraphQL</a> exposes RDF sources<br />as a GraphQL interface</h2>
+        <ul>
+            <li><a href="https://github.com/hypergraphql/hypergraphql">Open-source</a></li>
+            <li>Developed by <a href="https://semanticintegration.co.uk/">Semantic Integration</a></li>
+            <li>Server config defines RDF sources</li>
+            <li>Server uses <em>annotated</em> GraphQL schema with links to sources</li>
+            <li>Responses are enhanced with JSON-LD context</li>
+        </ul>
+    </section>
+    
+    <section id="hypergraphql-config" class="slide">
+        <h2>Configure a HyperGraphQL instance</h2>
+        <p><code>config.json</code>: interface parameters and available services (SPARQL, RDF files,...)</p>
+        <pre>{
+    "name": "dbpedia-sparql-hgql-demo",
+    "schema": "schema.graphql",
+    "server": {
+        "port": 8080,
+        "graphql": "/graphql",
+        "graphiql": "/graphiql"
+    },
+    "services": [{
+        "id": "dbpedia-sparql",
+        "type": "SPARQLEndpointService",
+        "url": "http://dbpedia.org/sparql/",
+        "graph": "http://dbpedia.org"
+    }]
+}</pre>
+    </section>
+    
+    <section id="hypergraphql-schema" class="slide">
+        <h2>Create an annotated GraphQL schema</h2>
+        <p>
+            <code>__Context</code> maps fields to IRIs<br />
+            <code>@service</code> defines source for a type/field
+        </p>
+        <pre>type __Context {
+  Person: _@href(iri: "http://dbpedia.org/ontology/Person")
+  City:   _@href(iri: "http://dbpedia.org/ontology/City")
+  name:   _@href(iri: "http://xmlns.com/foaf/0.1/name")
+  label:  _@href(iri: "http://www.w3.org/2000/01/rdf-schema#label")
+}
+
+type Person @service(id:"dbpedia-sparql") {
+  name: String @service(id:"dbpedia-sparql")
+  label: [String] @service(id:"dbpedia-sparql")
+  birthPlace: City @service(id:"dbpedia-sparql")
+  birthDate: String @service(id:"dbpedia-sparql")
+}</pre>
+    </section>
+    
+    <section id="hypergraphql-response" class="slide">
+        <h2>HyperGraphQL returns JSON-LD</h2>
+        <p>Both valid GraphQL response and RDF</p>
+        <pre>{
+  "data": {
+    "Person_GET": [
+      {
+        "_id": "http://dbpedia.org/resource/Sani_ol_molk",
+        "_type": "http://dbpedia.org/ontology/Person",
+        "name": "Mirza Abolhassan Khan Ghaffari"
+      }
+    ],
+    "@context": {
+      "_id": "@id",
+      "_type": "@type",
+      "name": "http://xmlns.com/foaf/0.1/name"
+    }
+  }
+}</pre>
+    </section>
+    
     <section id="index-topbraid" class="slide index">
       <ul>
         <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
@@ -148,6 +221,13 @@
         <li><a href="#index-stardog">Stardog</a></li>
         <li><a href="#index-graphqlld">GraphQL-LD</a></li>
       </ul>
+    </section>
+    
+<section id="sources" class="slide">
+        <h2>Sources</h2>
+        <ul style="font-size: 0.7em">
+            <li>HyperGraphQL documentation: <a href="https://www.hypergraphql.org/documentation/">https://www.hypergraphql.org/documentation/</a></li>
+        </ul>
     </section>
 
     <footer>
