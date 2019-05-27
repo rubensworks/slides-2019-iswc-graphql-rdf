@@ -340,10 +340,11 @@ type Human {
     
     <section id="graphqlld" class="slide">
         <h2><a href="https://comunica.github.io/Article-ISWC2018-Demo-GraphQlLD/">GraphQL-LD</a> converts GraphQL to SPARQL</h2>
-        <img src="img/graphqlld.png" alt="GraphQL-LD Logo" style="float: left; width: 345px; margin: 10px" />
+        <img src="img/graphqlld.png" alt="GraphQL-LD Logo" style="float: right; width: 345px; margin: 10px" />
         <ul>
             <li>Open-source engine-independent approach</li>
             <li>Developed <a href="https://www.ugent.be/ea/idlab/en">IDLab</a></li>
+            <li>Focus on GraphQL query, not schema<br />&rarr; no GraphQL interface</li>
             <li>Converts GraphQL queries to SPARQL using JSON-LD context</li>
             <li>Converts SPARQL results to JSON tree</li>
         </ul>
@@ -394,6 +395,42 @@ WHERE {
         <li><a href="#index-stardog">Stardog</a></li>
         <li><a href="#index-graphqlld">GraphQL-LD</a></li>
       </ul>
+    </section>
+    
+    <section id="approaches-overview" class="slide">
+        <h2>Querying RDF with GraphQL: Overview</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Commercial</th>
+                <th>Engine-dependent</th>
+                <th>Lifting method</th>
+            </tr>
+            <tr>
+                <td>HyperGraphQL</td>
+                <td>✕</td>
+                <td>✕</td>
+                <td>GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>TopBraid</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Shapes / GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>Stardog</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Namespaces / GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>GraphQL-LD</td>
+                <td>✕</td>
+                <td>✕</td>
+                <td>JSON-LD context</td>
+            </tr>
+        </table>
     </section>
     
 <section id="sources" class="slide">
