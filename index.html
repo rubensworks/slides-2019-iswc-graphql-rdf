@@ -338,6 +338,56 @@ type Human {
       </ul>
     </section>
     
+    <section id="graphqlld" class="slide">
+        <h2><a href="https://comunica.github.io/Article-ISWC2018-Demo-GraphQlLD/">GraphQL-LD</a> converts GraphQL to SPARQL</h2>
+        <img src="img/graphqlld.png" alt="GraphQL-LD Logo" style="float: right; width: 345px; margin: 10px" />
+        <ul>
+            <li>Open-source engine-independent approach</li>
+            <li>Developed <a href="https://www.ugent.be/ea/idlab/en">IDLab</a></li>
+            <li>Focus on GraphQL query, not schema<br />&rarr; no GraphQL interface</li>
+            <li>Converts GraphQL queries to SPARQL using JSON-LD context</li>
+            <li>Converts SPARQL results to JSON tree</li>
+        </ul>
+    </section>
+    
+    <section id="graphqlld-context" class="slide">
+        <h2>JSON-LD contexts are exploited</h2>
+        <ul>
+            <li>GraphQL field to IRI with <code>@id</code></li>
+            <li>Reverse node relationships with <code>@reverse</code></li>
+            <li>Set literal language with <code>@language</code></li>
+            <li>Set literal datatype with <code>@type</code></li>
+            <li>&rarr; Contexts apply to both GraphQL query and JSON results</li>
+        </ul>
+    </section>
+    
+    <section id="graphqlld-querying-example" class="slide">
+        <h2>Conversion expands fields to IRIs</h2>
+        <div style="width: 40%; float: left">
+            <p>GraphQL:</p>
+            <pre>{
+  label
+  artist { label }
+}</pre>
+            <p>JSON-LD context:</p>
+            <pre>{
+  "label": "http://www.w3.org/2000/01/rdf-schema#label",
+  "artist": "http://dbpedia.org/ontology/musicalArtist"
+}</pre>
+        </div>
+        <div style="width: 50%; float: right">
+            <p>SPARQL:</p>
+            <pre>SELECT ?label ?writer ?artist_label
+WHERE {
+  _:b1 rdfs:label ?label;
+       dbo:writer ?writer.
+  _:b1 dbo:musicalArtist [
+    rdfs:label ?artist_label
+  ].
+}</pre>
+        </div>
+    </section>
+    
     <section id="index-final" class="slide index">
       <ul>
         <li><a href="#index-hypergraphql">HyperGraphQL</a></li>
@@ -347,12 +397,71 @@ type Human {
       </ul>
     </section>
     
-<section id="sources" class="slide">
+    <section id="approaches-overview" class="slide">
+        <h2>Querying RDF with GraphQL: Overview</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Commercial</th>
+                <th>Engine-dependent</th>
+                <th>Lifting method</th>
+            </tr>
+            <tr>
+                <td>HyperGraphQL</td>
+                <td>✕</td>
+                <td>✕</td>
+                <td>GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>TopBraid</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Shapes / GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>Stardog</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Namespaces / GraphQL schema</td>
+            </tr>
+            <tr>
+                <td>GraphQL-LD</td>
+                <td>✕</td>
+                <td>✕</td>
+                <td>JSON-LD context</td>
+            </tr>
+        </table>
+    </section>
+    
+    <section id="conclusions" class="slide">
+        <h2>In Summary</h2>
+        <ul>
+            <li>
+                <h3>Federation with GraphQL is hard</h3>
+                <p class="indent">Because queries and schemas have no global semantics</p>
+            </li>
+            <li>
+                <h3>RDF and SPARQL offer solutions</h3>
+                <p class="indent">Federated querying is a well-established domain in the Semantic Web</p>
+            </li>
+            <li>
+                <h3>Crossing the bridge between GraphQL and RDF</h3>
+                <p class="indent">Multiple approaches exist: HyperGraphQL, TopBraid, Stardog, GraphQL-LD</p>
+            </li>
+            <li>
+                <h3><a href="https://rubensworks.github.io/article-w3cdataws2019-graphql/">Bridges are incompatible</a></h3>
+                <p class="indent">Future standardization may be required for aligning approaches</p>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="sources" class="slide">
         <h2>Sources</h2>
         <ul style="font-size: 0.7em">
             <li>HyperGraphQL documentation: <a href="https://www.hypergraphql.org/documentation/">https://www.hypergraphql.org/documentation/</a></li>
             <li>TopQuadrant GraphQL: <a href="https://www.topquadrant.com/technology/graphql/">https://www.topquadrant.com/technology/graphql/</a></li>
             <li>Stardog Documentation: <a href="https://www.stardog.com/docs/#_graphql_queries">https://www.stardog.com/docs/#_graphql_queries</a></li>
+            <li>GraphQL-LD Article: <a href="https://comunica.github.io/Article-ISWC2018-Demo-GraphQlLD/">https://comunica.github.io/Article-ISWC2018-Demo-GraphQlLD/</a></li>
         </ul>
     </section>
 
